@@ -1,0 +1,24 @@
+Nume: STOICAN Theodor
+Grupa: 333CA
+
+In crearea lexer-ului, am pornit de la scheletul pentru tema 0, efectuand 
+maparea expresiilor regulate pe input-ul primit caracter cu caracter. 
+Pentru a putea gestiona eficient erorile sintactice, am folosit mai multe stari, 
+care corespund fiecarui element al gramaticii, denumite sugestiv (VSET, 
+ALPHABET etc.). In acest fel, tin cateva reguli care pot face match pe toate
+variantele bune care ar putea aparea in input, iar daca primesc un input 
+invalid, exista o regula la final (. - orice alt caracter in afara de cele
+care s-ar incadra in structura unei reguli) care trateaza un astfel de caz.
+Am tratat erorile semantice dupa etapa de parsare, tinand cont de cele 5 
+cazuri de erori specificate in enunt. Pentru mapari si alte lucruri similare 
+am folosit STL (map, set), complexitatea de look-up fiind O(logn). De asemenea
+, am creat 2 functii (useless_nonterminals si has_e) pentru a implementa doua 
+dintre cele 3 functionalitati, cu mentiunea ca useless_nonterminals este 
+apelata in fiecare dintre cele 3 cazuri, pentru a reduce complexitatea. Pentru
+algoritmul aferent functionalitatilor has-e si useless_nonterminals, 
+complexitatea (worst-case) este :O(|V|^2*|R|*lung_max_dreapta_regula*log|V|). 
+Practic(la has-e, ca exemplu), la fiecare iteratie, verific daca nu exista un
+sir care rezulta in e, bazat pe sirurile detectate la iteratiile precedente.
+Sunt astfel nonterminals.size() iteratii, cel mult. Similar este si algoritmul
+pentru --useless-nonterminals, iar la --is-void lucrurile sunt simple, existand
+ o singura conditie de verificat.
